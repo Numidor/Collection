@@ -1,5 +1,5 @@
 /*
-* Finds next prime, needs work on runtime.
+* Finds next prime, needs work on runtime. Numbers >8 take way too long.
 */
 package nextprime;
 
