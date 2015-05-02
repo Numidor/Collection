@@ -1,5 +1,5 @@
 /*
-* N queens problem solution
+* NxN grid + queens problem solution
 */
 package gameofqueens;
 
@@ -9,17 +9,17 @@ public class GameofQueens {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.print("Please enter the size of the board(above 3): ");
+        System.out.print("Please enter the size of the board: ");
         int gridSize = in.nextInt();
-        if(gridSize <0 || gridSize == 2 || gridSize ==3){
-            System.out.println("Choose a positive number above 3. Try again.");
+        if(gridSize <0){
+            System.out.println("Choose a positive number. Try again.");
         }else{
             enumerate(gridSize);
         }
     }
         public static void enumerate(int N) {
         int[] a = new int[N];
-        enumerate(a, 0);
+        enumerate(a,0);      
     }
 
     public static void enumerate(int[] q, int n) {
@@ -27,12 +27,18 @@ public class GameofQueens {
         if (n == N){
             printQueens(q);
         } else {
-            for (int i = 0; i < N; i++) {
+            int i, c = 0;
+            for (i = 0; i < N; i++) {
                 q[n] = i;
-                boolean check = isConsistent(q, n);
-                if (check) {
+                if (isConsistent(q, n)) {
                     enumerate(q, n+1);
+                } else {
+                  c++;  
                 }
+            }
+            if(c == i){
+                q[n] = i+1;
+                enumerate(q, n+1);
             }
         }
     } 
@@ -61,9 +67,13 @@ public class GameofQueens {
                 }
             }
             System.out.println();
-        }  
+        }
         System.out.println();
+        /*System.out.println(Arrays.toString(q));
+        System.out.println();*/
+        
     }
+
     
     
 }
